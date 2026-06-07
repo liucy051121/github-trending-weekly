@@ -24,7 +24,11 @@ jobs:
       - name: 安装依赖
         run: pip install -r requirements.txt
 
-      - name: 抓取本周数据
+      - name: 抓取本周数据（含 LLM 翻译）
+        env:
+          LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
+          LLM_API_BASE: https://api.openai.com/v1
+          LLM_MODEL: gpt-4o-mini
         run: python app.py scrape
 
       - name: 构建静态站点

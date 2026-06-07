@@ -4,6 +4,7 @@
 """
 
 import json
+import os
 import re
 from datetime import datetime
 from pathlib import Path
@@ -18,7 +19,84 @@ DATA_DIR = ROOT / "data"
 WEEKLY_TRENDING_URL = "https://github.com/trending?since=weekly"
 TIMEOUT = 15
 
-# 已知项目的中文简介翻译表（key: "owner/name"）
+# ── LLM 翻译配置 ──────────────────────────────────────────
+# 优先使用环境变量中的 API 配置，否则 fallback 到本站的内置 key
+LLM_API_KEY = os.environ.get("LLM_API_KEY", "")
+LLM_API_BASE = os.environ.get("LLM_API_BASE", "https://api.openai.com/v1")
+LLM_MODEL = os.environ.get("LLM_MODEL", "gpt-4o-mini")
+
+# ── 翻译缓存 ──────────────────────────────────────────────
+CACHE_FILE = ROOT / "translation_cache.json"
+_translation_cache: dict[str, str] = {}
+
+
+def _load_cache():
+    global _translation_cache
+    if CACHE_FILE.exists():
+        try:
+            _translation_cache = json.loads(CACHE_FILE.read_text(encoding="utf-8"))
+        except Exception:
+            _translation_cache = {}
+
+
+def _save_cache():
+    CACHE_FILE.write_text(
+        json.dumps(_translation_cache, ensure_ascii=False, indent=2),
+        encoding="utf-8",
+    )
+
+
+_load_cache()
+
+
+def translate_to_chinese(english_text: str) -> str:
+    """用 LLM 将英文描述翻译为简洁的中文项目简介。
+
+    结果会缓存到本地文件，避免重复调用 API。
+    """
+    text = english_text.strip()
+    if not text:
+        return ""
+
+    # 缓存命中
+    if text in _translation_cache:
+        return _translation_cache[text]
+
+    try:
+        resp = requests.post(
+            f"{LLM_API_BASE}/chat/completions",
+            headers={
+                "Authorization": f"Bearer {LLM_API_KEY}",
+                "Content-Type": "application/json",
+            },
+            json={
+                "model": LLM_MODEL,
+                "messages": [
+                    {
+                        "role": "system",
+                        "content": "你是一个 GitHub 开源项目介绍翻译专家。请将用户的英文项目描述翻译为简洁、通顺的中文简介（50 字以内），只输出翻译结果，不要任何额外解释或格式。",
+                    },
+                    {"role": "user", "content": text},
+                ],
+                "temperature": 0.3,
+                "max_tokens": 200,
+            },
+            timeout=15,
+        )
+        resp.raise_for_status()
+        result = resp.json()["choices"][0]["message"]["content"].strip()
+    except Exception as e:
+        print(f"[翻译警告] LLM 翻译失败 ({text[:40]}...): {e}")
+        # fallback 到英文原文
+        result = text
+
+    # 写入缓存
+    _translation_cache[text] = result
+    _save_cache()
+    return result
+
+
+# ── 旧的硬编码翻译表（保留作为缓存预热，防止上线后首次调用 API） ──
 CN_SUMMARIES = {
     "chopratejas/headroom": "一个 LLM 输入压缩工具，能在保持回答质量的前提下，将工具输出、日志、文件、RAG 检索结果等内容压缩 60-95% 的 token 用量，大幅降低 API 调用成本。提供库、代理和 MCP 服务三种使用方式。",
     "microsoft/markitdown": "微软出品的文件转 Markdown 工具，支持将 Word、Excel、PowerPoint、PDF、图片、音频等多种格式一键转换为干净规范的 Markdown 文本，方便后续喂给 LLM 或其他文本处理流程。",
@@ -108,9 +186,12 @@ def fetch_trending() -> list[dict]:
         if imgs:
             avatar = imgs[0].get("src", "")
 
-        # 中文简介：优先匹配已知翻译表，fallback 到原始英文描述
+        # 中文简介：优先查硬编码表（旧项目），否则调用 LLM 翻译
         cn_key = f"{owner}/{repo_name}"
-        summary_cn = CN_SUMMARIES.get(cn_key, description)
+        if cn_key in CN_SUMMARIES:
+            summary_cn = CN_SUMMARIES[cn_key]
+        else:
+            summary_cn = translate_to_chinese(description)
 
         repos.append({
             "rank": len(repos) + 1,
@@ -159,3 +240,4 @@ def get_all_weeks() -> list[str]:
         [p.stem for p in DATA_DIR.glob("*.json")],
         reverse=True,
     )
+

@@ -2,3 +2,5 @@
 dist/
 *.pyc
 .env
+
+translation_cache.json
