@@ -1,0 +1,48 @@
+﻿{% extends "base.html" %}
+{% block title %}第 {{ data.week }} 期 — GitHub 每周星标榜单{% endblock %}
+{% block content %}
+<section class="week-header">
+    <a href="/" class="back-link">← 返回首页</a>
+    <h1>第 {{ data.week }} 期</h1>
+    <p class="fetch-time">抓取时间：{{ data.fetched_at }}</p>
+</section>
+<section class="repo-grid">
+    {% for repo in data.repos %}
+    <div class="repo-card" data-expanded="false">
+        <div class="repo-rank">#{{ repo.rank }}</div>
+        <div class="repo-main" onclick="toggleDetail(this.parentElement)">
+            <img class="repo-avatar" src="{{ repo.avatar }}" alt="{{ repo.owner }}" loading="lazy" onerror="this.style.display='none'">
+            <div class="repo-body">
+                <h2 class="repo-name">{{ repo.owner }}/<strong>{{ repo.name }}</strong></h2>
+                {% if repo.description %}
+                <p class="repo-desc">{{ repo.description }}</p>
+                {% endif %}
+                <div class="repo-meta">
+                    {% if repo.language %}
+                    <span class="lang-badge">{{ repo.language }}</span>
+                    {% endif %}
+                    <span class="star-count">⭐ {{ repo.stars }}</span>
+                    <span class="star-period">+{{ repo.stars_period }} 本周</span>
+                </div>
+            </div>
+            <span class="expand-icon">▸</span>
+        </div>
+        <div class="repo-detail">
+            <div class="detail-summary">
+                <p class="summary-label">📖 项目简介</p>
+                <p class="summary-text">{{ repo.get("summary_cn", repo.description) }}</p>
+            </div>
+            <a class="github-link" href="{{ repo.url }}" target="_blank" rel="noopener">
+                前往 GitHub 仓库 →
+            </a>
+        </div>
+    </div>
+    {% endfor %}
+</section>
+<script>
+function toggleDetail(card) {
+    var expanded = card.getAttribute("data-expanded") === "true";
+    card.setAttribute("data-expanded", expanded ? "false" : "true");
+}
+</script>
+{% endblock %}

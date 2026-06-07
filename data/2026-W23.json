@@ -1,0 +1,126 @@
+{
+  "week": "2026-W23",
+  "fetched_at": "2026-06-07T19:39:23",
+  "repos": [
+    {
+      "rank": 1,
+      "owner": "chopratejas",
+      "name": "headroom",
+      "url": "https://github.com/chopratejas/headroom",
+      "description": "Compress tool outputs, logs, files, and RAG chunks before they reach the LLM. 60-95% fewer tokens, same answers. Library, proxy, MCP server.",
+      "language": "Python",
+      "stars": 16401,
+      "stars_period": 13308,
+      "avatar": "https://avatars.githubusercontent.com/u/3607994?s=40&v=4",
+      "summary_cn": "一个 LLM 输入压缩工具，能在保持回答质量的前提下，将工具输出、日志、文件、RAG 检索结果等内容压缩 60-95% 的 token 用量，大幅降低 API 调用成本。提供库、代理和 MCP 服务三种使用方式。"
+    },
+    {
+      "rank": 2,
+      "owner": "microsoft",
+      "name": "markitdown",
+      "url": "https://github.com/microsoft/markitdown",
+      "description": "Python tool for converting files and office documents to Markdown.",
+      "language": "Python",
+      "stars": 146861,
+      "stars_period": 15015,
+      "avatar": "https://avatars.githubusercontent.com/u/4017093?s=40&v=4",
+      "summary_cn": "微软出品的文件转 Markdown 工具，支持将 Word、Excel、PowerPoint、PDF、图片、音频等多种格式一键转换为干净规范的 Markdown 文本，方便后续喂给 LLM 或其他文本处理流程。"
+    },
+    {
+      "rank": 3,
+      "owner": "harry0703",
+      "name": "MoneyPrinterTurbo",
+      "url": "https://github.com/harry0703/MoneyPrinterTurbo",
+      "description": "利用AI大模型，一键生成高清短视频 Generate short videos with one click using AI LLM.",
+      "language": "Python",
+      "stars": 80759,
+      "stars_period": 9174,
+      "avatar": "https://avatars.githubusercontent.com/u/4928832?s=40&v=4",
+      "summary_cn": "利用 AI 大模型一键生成高清短视频的全自动化工具。只需提供文案主题，就能自动完成视频脚本、配音、字幕、画面素材的生成和合成，无需任何视频剪辑经验。"
+    },
+    {
+      "rank": 4,
+      "owner": "revfactory",
+      "name": "harness",
+      "url": "https://github.com/revfactory/harness",
+      "description": "A meta-skill that designs domain-specific agent teams, defines specialized agents, and generates the skills they use.",
+      "language": "HTML",
+      "stars": 6355,
+      "stars_period": 2098,
+      "avatar": "https://avatars.githubusercontent.com/u/2889542?s=40&v=4",
+      "summary_cn": "一个元技能框架，用于设计特定领域的 AI Agent 团队。你可以用它定义专业化 Agent 角色，并为每个 Agent 自动生成所需的技能配置，加速复杂任务的 Agent 协作开发。"
+    },
+    {
+      "rank": 5,
+      "owner": "supermemoryai",
+      "name": "supermemory",
+      "url": "https://github.com/supermemoryai/supermemory",
+      "description": "Memory engine and app that is extremely fast, scalable. The Memory API for the AI era.",
+      "language": "TypeScript",
+      "stars": 25928,
+      "stars_period": 2992,
+      "avatar": "https://avatars.githubusercontent.com/u/63950637?s=40&v=4",
+      "summary_cn": "面向 AI 时代的高性能记忆引擎和 API。提供极速、可扩展的长期记忆能力，让 AI 应用能够记住用户偏好和历史交互，适用于聊天机器人、个人助手等需要持久化上下文的场景。"
+    },
+    {
+      "rank": 6,
+      "owner": "affaan-m",
+      "name": "ECC",
+      "url": "https://github.com/affaan-m/ECC",
+      "description": "The agent harness performance optimization system. Skills, instincts, memory, security, and research-first development for Claude Code, Codex, Opencode, Cursor and beyond.",
+      "language": "JavaScript",
+      "stars": 209475,
+      "stars_period": 10351,
+      "avatar": "https://avatars.githubusercontent.com/u/124439313?s=40&v=4",
+      "summary_cn": "一个 Agent 性能优化系统，为 Claude Code、Codex、Cursor 等主流 AI 编程助手提供技能增强、上下文记忆、安全策略和研发优先的开发方法论，全面提升编码 Agent 的能力上限。"
+    },
+    {
+      "rank": 7,
+      "owner": "EveryInc",
+      "name": "compound-engineering-plugin",
+      "url": "https://github.com/EveryInc/compound-engineering-plugin",
+      "description": "Official Compound Engineering plugin for Claude Code, Codex, Cursor, and more",
+      "language": "TypeScript",
+      "stars": 20247,
+      "stars_period": 1752,
+      "avatar": "https://avatars.githubusercontent.com/u/517103?s=40&v=4",
+      "summary_cn": "Compound Engineering 官方插件，为 Claude Code、Codex、Cursor 等 AI 编程助手提供结构化的工程化能力增强，帮助 Agent 在复杂项目中保持代码质量和架构一致性。"
+    },
+    {
+      "rank": 8,
+      "owner": "Open-LLM-VTuber",
+      "name": "Open-LLM-VTuber",
+      "url": "https://github.com/Open-LLM-VTuber/Open-LLM-VTuber",
+      "description": "Talk to any LLM with hands-free voice interaction, voice interruption, and Live2D taking face running locally across platforms",
+      "language": "Python",
+      "stars": 10260,
+      "stars_period": 2273,
+      "avatar": "https://avatars.githubusercontent.com/u/36402030?s=40&v=4",
+      "summary_cn": "开源的 LLM 虚拟主播工具，支持免提语音交互、实时语音打断和 Live2D 动态形象渲染，可跨平台本地运行。让任何一个大语言模型都能「活」起来，拥有生动的虚拟形象。"
+    },
+    {
+      "rank": 9,
+      "owner": "can1357",
+      "name": "oh-my-pi",
+      "url": "https://github.com/can1357/oh-my-pi",
+      "description": "⌥ AI Coding agent for the terminal — hash-anchored edits, optimized tool harness, LSP, Python, browser, subagents, and more",
+      "language": "TypeScript",
+      "stars": 11014,
+      "stars_period": 2318,
+      "avatar": "https://avatars.githubusercontent.com/u/11807264?s=40&v=4",
+      "summary_cn": "终端 AI 编程助手，支持基于哈希锚点的精准代码编辑、优化的工具调用链、LSP 语言服务集成、Python 运行时、浏览器控制和子 Agent 调度，功能覆盖全面。"
+    },
+    {
+      "rank": 10,
+      "owner": "Leonxlnx",
+      "name": "taste-skill",
+      "url": "https://github.com/Leonxlnx/taste-skill",
+      "description": "Taste-Skill - gives your AI good taste. stops the AI from generating boring, generic slop",
+      "language": "Shell",
+      "stars": 35753,
+      "stars_period": 6085,
+      "avatar": "https://avatars.githubusercontent.com/u/219127460?s=40&v=4",
+      "summary_cn": "给 AI 编程助手加上「好品味」——防止 AI 生成无聊、千篇一律、缺乏设计感的代码。通过技能配置引导 AI 输出更优雅、更符合人类审美的方案，拒绝「AI 流水线味道」。"
+    }
+  ]
+}

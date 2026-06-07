@@ -1,0 +1,27 @@
+﻿{% extends "base.html" %}
+{% block title %}GitHub 每周星标榜单 — 历史周报{% endblock %}
+{% block content %}
+<section class="hero">
+    <h1>GitHub 每周星标 Top 10</h1>
+    <p>自动追踪 GitHub 每周星标增长最快的开源项目</p>
+</section>
+<section class="week-list">
+    {% if week_summaries %}
+        {% for ws in week_summaries %}
+        <a href="/week/{{ ws.week }}/" class="week-card">
+            <div class="week-label">{{ ws.week }}</div>
+            <div class="week-info">
+                <span class="repo-count">{{ ws.repo_count }} 个仓库</span>
+                <span class="top-repo-name">{{ ws.top_name }}</span>
+                <span class="top-stars">+{{ ws.top_stars }}</span>
+            </div>
+        </a>
+        {% endfor %}
+    {% else %}
+        <div class="empty-state">
+            <p>暂无数据</p>
+            <p class="hint">运行 <code>python app.py scrape</code> 来抓取本周数据</p>
+        </div>
+    {% endif %}
+</section>
+{% endblock %}
