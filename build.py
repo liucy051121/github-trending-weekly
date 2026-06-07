@@ -61,20 +61,10 @@ def build():
     # 渲染首页
     render_page("index.html", DIST_DIR / "index.html", week_summaries=week_summaries)
 
-    # 渲染每期详情页
-    week_dir = DIST_DIR / "week"
-    week_dir.mkdir(exist_ok=True)
+    # 渲染每期详情页到 week/<key>/index.html
     for wk, data in week_data.items():
-        render_page("week.html", week_dir / f"{wk}.html", data=data)
-
-    # 让 /week/2026-W23 不需要 .html 后缀 (GitHub Pages 默认行为)
-    # 重命名为文件夹形式: /week/2026-W23/index.html
-    for wk in week_data:
-        dir_path = week_dir / wk
-        dir_path.mkdir(exist_ok=True)
-        old_path = week_dir / f"{wk}.html"
-        new_path = dir_path / "index.html"
-        old_path.rename(new_path)
+        dir_path = DIST_DIR / "week" / wk
+        render_page("week.html", dir_path / "index.html", data=data)
 
     print(f"\nDone: {len(week_data)} 期周报已生成到 {DIST_DIR}")
 

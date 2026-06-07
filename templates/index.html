@@ -8,7 +8,7 @@
 <section class="week-list">
     {% if week_summaries %}
         {% for ws in week_summaries %}
-        <a href="/week/{{ ws.week }}/" class="week-card">
+        <a href="week/{{ ws.week }}/" class="week-card">
             <div class="week-label">{{ ws.week }}</div>
             <div class="week-info">
                 <span class="repo-count">{{ ws.repo_count }} 个仓库</span>
