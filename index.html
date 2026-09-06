@@ -1,0 +1,66 @@
+﻿﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub 每周星标榜单 — 历史周报</title>
+    <link rel="stylesheet" href="static/css/style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="./" class="logo">&#x2B50; GitHub 每周星标榜单</a>
+            <div class="nav-actions">
+                <button id="scrape-btn" class="scrape-btn" title="立即抓取本周数据" style="display:none">&#x1F504;</button>
+                <button id="theme-toggle" class="theme-btn" title="切换主题">&#x1F313;</button>
+            </div>
+        </nav>
+    </header>
+    <main>
+        
+<section class="hero">
+    <h1>GitHub 每周星标 Top 10</h1>
+    <p>自动追踪 GitHub 每周星标增长最快的开源项目</p>
+</section>
+<section class="week-list">
+    
+        
+        <a href="week/2026-W36/" class="week-card">
+            <div class="week-label">2026-W36</div>
+            <div class="week-info">
+                <span class="repo-count">10 个仓库</span>
+                <span class="top-repo-name">tt-a1i/archify</span>
+                <span class="top-stars">+19480</span>
+            </div>
+        </a>
+        
+        <a href="week/2026-W23/" class="week-card">
+            <div class="week-label">2026-W23</div>
+            <div class="week-info">
+                <span class="repo-count">10 个仓库</span>
+                <span class="top-repo-name">chopratejas/headroom</span>
+                <span class="top-stars">+13308</span>
+            </div>
+        </a>
+        
+    
+</section>
+
+    </main>
+    <footer>
+        <p>数据来源：<a href="https://github.com/trending?since=weekly" target="_blank" rel="noopener">GitHub Trending</a> · 每周一 8:00 自动更新</p>
+    </footer>
+    <script>
+        const btn = document.getElementById("theme-toggle");
+        const saved = localStorage.getItem("theme");
+        if (saved === "light") document.body.classList.add("light");
+        btn.addEventListener("click", function () {
+            document.body.classList.toggle("light");
+            localStorage.setItem(
+                "theme",
+                document.body.classList.contains("light") ? "light" : "dark"
+            );
+        });
+    </script>
+</body>
+</html>
